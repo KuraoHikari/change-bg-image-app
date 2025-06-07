@@ -47,7 +47,7 @@ Tercantum di `requirements.txt`:
 ### 3. Instalasi
 
 ```bash
-git clone https://github.com/username/change-bg-image-app.git
+git clone https://github.com/KuraoHikari/change-bg-image-app.git
 cd change-bg-image-app
 python3 -m venv venv
 source venv/bin/activate
