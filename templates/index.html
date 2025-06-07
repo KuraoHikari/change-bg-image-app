@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengganti Latar Foto Paspor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+ </head>
+<body>
+        <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">BG<span>Changer</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Fitur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">Cara Menggunakan</a>
+                    </li>
+                   
+                </ul>
+               
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1>Ganti Latar Belakang Paspor dengan Satu Klik</h1>
+                    <p>Ubah latar belakang foto paspor Anda secara instan dengan warna yang Anda inginkan. Tanpa Photoshop, tanpa keahlian khusus.</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Mulai Sekarang</button>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Contoh Foto Paspor" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ganti Latar Belakang Paspor Anda</h2>
+                <p>Upload foto Anda dan pilih warna latar belakang yang diinginkan. Hasilnya akan langsung terlihat!</p>
+            </div>
+
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h3><i class="fas fa-camera me-2"></i>Ubah Latar Belakang Paspor</h3>
+                </div>
+                <div class="tool-body">
+                    <div class="row">
+                        <!-- Area Upload -->
+                        <div class="col-md-4">
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="upload-text">
+                                    <h4>Upload Foto</h4>
+                                    <p>Seret atau klik untuk mengunggah foto paspor Anda</p>
+                                    <button class="btn btn-outline-primary">Pilih File</button>
+                                </div>
+                                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                            </div>
+                            
+                            <div class="preview-container mt-3" id="previewContainer" style="display: none;">
+                                <h5>Preview Gambar:</h5>
+                                <img id="preview" class="img-fluid">
+                            </div>
+                        </div>
+                        
+                        <!-- Area Pemrosesan -->
+                        <div class="col-md-4 mt-4 mt-md-0">
+                            <div class="color-picker">
+                                <h5>Pilih Warna Latar:</h5>
+                                <div class="color-options">
+                                    <div class="color-option blue active" data-color="blue"></div>
+                                    <div class="color-option red" data-color="red"></div>
+                                    <div class="color-option white" data-color="white"></div>
+                                    <div class="color-option green" data-color="green"></div>
+                                    <div class="color-option lightblue" data-color="lightblue"></div>
+                                    <div class="color-option yellow" data-color="yellow"></div>
+                                    <div class="color-option orange" data-color="orange"></div>
+                                </div>
+                                
+                                <div class="d-grid gap-2 mt-4">
+                                    <button class="btn-process" id="processBtn" disabled>
+                                        <i class="fas fa-sync-alt me-2"></i>Ganti Latar Belakang
+                                    </button>
+                                    
+                                    <div class="spinner" id="spinner"></div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h5>Tips Foto Paspor:</h5>
+                                    <ul class="text-muted small">
+                                        <li>Foto harus jelas dan menghadap ke depan</li>
+                                        <li>Pastikan wajah terlihat sepenuhnya</li>
+                                        <li>Hindari bayangan pada wajah</li>
+                                        <li>Gunakan background kontras</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Area Hasil -->
+                        <div class="col-md-4 mt-4 mt-md-0">
+                            <div class="result-container" id="resultContainer">
+                                <h5>Hasil Foto Paspor:</h5>
+                                <img src="" alt="Hasil" class="result-image" id="resultImage">
+                                <a href="#" class="btn-download" id="downloadBtn">
+                                    <i class="fas fa-download me-2"></i>Download Foto
+                                </a>
+                            </div>
+                            <div class="upload-area" id="placeholder">
+                                <div class="upload-icon">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <div class="upload-text">
+                                    <h4>Hasil Akan Ditampilkan di Sini</h4>
+                                    <p>Setelah Anda mengupload foto dan memilih warna latar, hasilnya akan muncul di area ini</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cara Menggunakan BGChanger</h2>
+                <p>Hanya perlu 3 langkah mudah untuk mendapatkan foto paspor dengan latar belakang sempurna</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Upload Foto Anda</h4>
+                        <p>Unggah foto paspor Anda dengan format JPG atau PNG. Pastikan wajah terlihat jelas dan menghadap ke depan.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Pilih Warna Latar</h4>
+                        <p>Pilih warna latar belakang yang Anda inginkan dari 7 pilihan warna standar untuk paspor.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Download & Gunakan</h4>
+                        <p>Download hasil foto paspor Anda dengan latar belakang baru dan gunakan untuk kebutuhan Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h5>BGChanger</h5>
+                    <p class="mb-4">Layanan penggantian latar belakang foto paspor secara otomatis dengan hasil berkualitas tinggi.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5>Produk</h5>
+                    <ul>
+                        <li><a href="#">Ganti Latar</a></li>
+                        <li><a href="#">Edit Paspor</a></li>
+                        <li><a href="#">Pratinjau</a></li>
+                        <li><a href="#">Pakai API</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5>Perusahaan</h5>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5>Berlangganan</h5>
+                    <p>Dapatkan update dan penawaran terbaru</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email Anda">
+                        <button class="btn btn-primary" type="button">Daftar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BGChanger. Hak cipta dilindungi. Dibuat dengan ❤️ untuk kebutuhan paspor Anda.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Notification Element -->
+    <div class="notification" id="notification"></div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+ </body>
+</html>
