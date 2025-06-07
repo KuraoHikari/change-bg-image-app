@@ -144,4 +144,4 @@ change-bg-image-app/
 
 ---
 
-> **Lisensi:** MIT License (atau sesuai kebutuhan Anda)
+> **Lisensi:** MIT License 
